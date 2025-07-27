@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="UploadPatterns.NotifierCtl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <Border Background="Bisque" BorderBrush="Red" BorderThickness="5" CornerRadius="15,0,15,0" HorizontalAlignment="Center" Margin="10" Name="brdrMessage" Padding="5" VerticalAlignment="Center">
+        <StackPanel>
+            <TextBlock FontWeight="Bold" Foreground="Transparent" HorizontalAlignment="Center" Name="txtMessage" Padding="8">dadadfa dfaf</TextBlock>
+            <Button  Click="ButtonOK_Click" Content="OK" HorizontalAlignment="Center" Width="50" Padding="3" />
+        </StackPanel>
+    </Border>
+ </UserControl>

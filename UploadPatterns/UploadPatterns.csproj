@@ -9,8 +9,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\AppIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\AppIcon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dirkster.FolderBrowser" Version="3.2.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="2.0.1" />
     <PackageReference Include="iTextSharp" Version="5.5.13.4" />
+    <PackageReference Include="log4net" Version="3.1.0" />
     <PackageReference Include="System.Drawing.Common" Version="9.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

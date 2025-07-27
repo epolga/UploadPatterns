@@ -1,22 +1,174 @@
 ﻿<Window x:Class="UploadPatterns.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:UploadPatterns"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Border  DockPanel.Dock="Right" Width="200px" Height="200px" Margin="10" CornerRadius="10,0,10,0" BorderBrush="LightBlue" BorderThickness="5" Padding="10px">
-            <Image x:Name="imgBatch"  MaxWidth="200px"  MaxHeight="200px"></Image>
-        </Border>
-        <Border x:Name="brdrMessage"  HorizontalAlignment="Center" VerticalAlignment="Center" Background="White"  BorderThickness="5" BorderBrush="Red" Padding="5" CornerRadius="15,0,15,0"  Visibility="Hidden" >
-            <StackPanel>
-                <TextBlock  x:Name="txtMessage"  Background="White" Padding="8"  FontWeight="Bold" Foreground="Red" HorizontalAlignment="Center" >dadadfa dfaf</TextBlock>
-            </StackPanel>
-        </Border>
-        <TextBox x:Name="txtPdfPath" HorizontalAlignment="Left" Margin="260,68,0,0" TextWrapping="Wrap" Text="D:\FTPROOT\Kits\4\1479\Stitch1479_1_Kit.pdf" VerticalAlignment="Top" Width="249" Height="34"/>
-        <Button Content="Get PDF Info" HorizontalAlignment="Left" Margin="143,69,0,0" VerticalAlignment="Top" Width="74" Height="32" Click="Button_Click"/>
+        xmlns:controls="clr-namespace:UploadPatterns"
+        SizeToContent="WidthAndHeight" 
+        Title="MainWindow" Background="AliceBlue"
+        Loaded="Window_Loaded"
+        Closing="OnClose" StateChanged="OnStateChanged" IsVisibleChanged="OnIsVisibleChanged" Icon="/UploadPatterns;component/Resources/AppIcon.ico">
+    <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <TextBox x:Name="txtRoot" Width="300px"></TextBox>
+            <Button x:Name="ButtonSetRoot" Width="20px" Margin="5" Click="ButtonSetRoot_Click">...</Button>
+            <Button Margin="5,0" Padding="15,5" Click="ButtonFill_Click">Fill</Button>
+        </StackPanel>
+        <Grid Background="Lavender">
+            <Border BorderThickness="5" BorderBrush="Lavender" CornerRadius="30,0,30,0" Background="AliceBlue">
+                <StackPanel Margin="12,12">
+                    <TabControl HorizontalAlignment="Stretch"  Name="tabControl1" VerticalAlignment="Stretch">
+                        <TabItem Header="Batch 1" Name="tabItem1">
+                            <Grid>
+                                <controls:GetBatchCtl x:Name="ctlGetBatch1" HorizontalAlignment="Stretch" UploadingID="1"></controls:GetBatchCtl>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Batch 2" Name="tabItem2">
+                            <Grid>
+                                <controls:GetBatchCtl x:Name="ctlGetBatch2" HorizontalAlignment="Stretch" UploadingID="2"></controls:GetBatchCtl>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Batch 3" Name="tabItem3">
+                            <Grid>
+                                <controls:GetBatchCtl x:Name="ctlGetBatch3" HorizontalAlignment="Stretch" UploadingID="3"></controls:GetBatchCtl>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Sending" Name="tabSending" Visibility="Visible" Loaded="tabSending_Loaded">
+                            <Border BorderThickness="5" BorderBrush="LightBlue" Padding="15" Margin="15" CornerRadius="20,0,20,0">
+                                <StackPanel>
+                                    <DockPanel>
+                                        <StackPanel DockPanel.Dock="Right">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblPersentSent" Content="Percent Sent:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtPersentSent" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblEmailsSent" Content="Emails Sent:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtEmailsSent" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblEmailsTotal" Content="Emails Total:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtEmailsTotal" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblDateCreated" Content="Date Created:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtDateCreated" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lbl30DaysBalance" Content="30 Days Balance:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txt30DaysBalance" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lbl2DaysBalance" Content="2 Days Balance:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txt2DaysBalance" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        <StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblNewsletterID" Content="Newsletter ID:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtNewsletterID" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblCurUserID" Content="Current User ID:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtCurUserID" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblCurUserEmail" Content="Current User Email:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtCurUserEmail" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label x:Name="lblCurCommand" Content="Current Command:" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                                <Label x:Name="txtCurCommand" Content="?" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </DockPanel>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                        <Button x:Name="btnRun" Width="50" Margin="20,10,10,10" Content="Run" Click="btnRun_Click"/>
+                                        <Button x:Name="butReset" Width="50" Margin="10" Content="Reset" Click="butReset_Click" />
+                                        <Button x:Name="butPause" Width="50" Margin="10" Content="Pause" Click="butPause_Click"/>
+                                        <Button x:Name="butIdle" Width="50" Margin="10" Content="Idle" Click="butIdle_Click"/>
+                                        <Button x:Name="butRefresh" Width="50" Margin="100,10,10,10" HorizontalAlignment="Right" Content="Refresh" Click="butRefresh_Click"/>
+                                        <TextBox Height="22" TextWrapping="Wrap" Text="" Width="120" Name="txtIDFrom"/>
+                                        <Button x:Name="butClear" Width="50" Margin="10,10,10,10" HorizontalAlignment="Right" Content="Clear" Click="butClear_Click"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="Upload Manually" Name="tabItem4">
+                            <Border Padding="0, 0, 0, 130px">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label>Design 1</Label>
+                                        <TextBox x:Name="txtDesignID1" Margin="5" Width="65px" TextWrapping="Wrap" Text=""/>
+                                        <Label>Design 2</Label>
+                                        <TextBox x:Name="txtDesignID2" Margin="5" Width="65px" TextWrapping="Wrap" Text=""/>
+                                        <Label>Design 3</Label>
+                                        <TextBox x:Name="txtDesignID3" Margin="5" Width="65px" TextWrapping="Wrap" Text=""/>
+                                    </StackPanel>
+                                    <Button Content="Upload" Margin="260,25,238,25" Height="30" Click="ManualUpload_Click"/>
+                                </StackPanel>
+                            </Border>
+                        </TabItem>
+                        <TabItem Header="Upload Image" Name="tabItem5">
 
-    </Grid>
+                            <Border Padding="0, 0, 0, 130px">
+                                <StackPanel>
+                                    <DockPanel VerticalAlignment="Top" Margin="5">
+                                        <Label Content="Image Text: " Height="28" Name="lblGetImage"  HorizontalAlignment="Left" DockPanel.Dock="Left"/>
+                                        <Button x:Name="btnGetImage" Content="..." Height="28px" Width="28px" Visibility="Visible" HorizontalAlignment="Right" DockPanel.Dock="Right" Click="ButtonGetImage_Click"  />
+                                        <TextBox Height="23" Name="txtImagePath" HorizontalAlignment="Stretch" Margin="5" IsEnabled="False" />
+                                    </DockPanel>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <Label Content="Album ID: " HorizontalAlignment="Left"></Label>
+                                        <TextBox Height="23" Width="150" HorizontalAlignment="Left" Name="txtImageAlbum"  Margin="5" IsEnabled="True" />
+                                    </StackPanel>
+                                    <StackPanel  Orientation="Horizontal">
+                                        <Label Content="Image ID: " HorizontalAlignment="Left"></Label>
+                                        <TextBox Height="23" Width="150" HorizontalAlignment="Left" Name="txtImageID"  Margin="5" IsEnabled="True" />
+                                    </StackPanel>
+                                </StackPanel>
+                            </Border>
+                        </TabItem>
+                    </TabControl>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <CheckBox x:Name="btnFromTo"  Content="From To" Margin="5px" Checked="btnFromTo_Checked" Unchecked="btnFromTo_Unchecked"/>
+                        <StackPanel x:Name="pnlTemplates" Orientation="Vertical">
+                            <TextBlock x:Name="txtMainPageTemplateProgress" Width="100px" Margin="5"></TextBlock>
+                            <TextBlock x:Name="txtMainPageTemplateLoggedInProgress" Width="100px" Margin="5"></TextBlock>
+                        </StackPanel>
+                        <StackPanel x:Name="pnlFromTo" Orientation="Horizontal" Visibility="Hidden">
+                            <Label>From ID</Label>
+                            <TextBox x:Name="txtFromID" Margin="5" Width="65px" TextWrapping="Wrap" Text=""/>
+                            <Label>To ID</Label>
+                            <TextBox x:Name="txtToID" Margin="5" Width="65px" TextWrapping="Wrap" Text=""/>
+                        </StackPanel>
+                        <CheckBox x:Name="cbEmptyEmail" Margin="8" IsChecked="False">Empty Email</CheckBox>
+                        <Button x:Name="btnCreateEmail" Margin="5" Padding="3px"  Click="ButtonCreateEmail_Click" IsEnabled="True">Create Email</Button>
+                        <Button x:Name="btnUploadTemplate" Margin="5" Padding="3px" Click="ButtonUploadTemplate_Click">Upload Template</Button>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border x:Name="brdrBody" BorderThickness="5" BorderBrush="Lavender" CornerRadius="30,0,30,0" Background="AliceBlue"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Collapsed">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8">
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                        <Button Width="80" Margin="5" Click="ButtonOK_Click">Done</Button>
+                        <Button Width="80" Margin="5" Click="ButtonCancel_Click">Cancel</Button>
+                    </StackPanel>
+                    <TextBox HorizontalAlignment="Stretch" Name="txtEmailSubject" DockPanel.Dock="Top" Margin="10">New patterns from Ann.</TextBox>
+                    <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" Margin="10" Name="txtEmailBody">Sending you new patterns. Hope you like them.</TextBox>
+                </DockPanel>
+            </Border>
+            <Border x:Name="brdrAskToClose" BorderThickness="5" BorderBrush="Lavender" CornerRadius="30,0,30,0" Background="AliceBlue"  HorizontalAlignment="Stretch" VerticalAlignment="Center" Visibility="Collapsed">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8">
+                    <StackPanel  Orientation="Horizontal" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                        <Button Width="80" Margin="5" Click="ButtonExit_Click">Exit</Button>
+                        <Button Width="80" Margin="5" Click="ButtonCancelExit_Click">Cancel</Button>
+                    </StackPanel>
+                    <TextBlock HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10" Name="txtEmail" FontSize="30"  Foreground="LightCoral"   TextAlignment="Center">
+                    Not all batches uploaded.<LineBreak></LineBreak>
+                    Are you sure you want to exit?
+                    </TextBlock>
+                </DockPanel>
+            </Border>
+            <controls:NotifierCtl x:Name="ctlNotifier" Visibility="Collapsed"></controls:NotifierCtl>
+        </Grid>
+    </StackPanel>
 </Window>

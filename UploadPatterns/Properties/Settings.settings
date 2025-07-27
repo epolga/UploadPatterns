@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UploadPatterns.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BatchesRoot" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\</Value>
+    </Setting>
+    <Setting Name="ImageFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">e:\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
